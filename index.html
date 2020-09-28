@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>为祖国护航</title>
+    <style>
+        @media screen and (min-width: 600px) {
+            body {
+                font-size: 10px;
+                margin: auto;
+            }
+        }
+        body{
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            position: relative;
+            width: 1em;
+            margin: auto;
+        }
+        #flagpole,#flag{
+            position: absolute;
+        }
+        #flag{
+            width: 7rem;
+            height: 3rem;
+            top: 4.8em;
+            animation-name: flag_up;
+            animation-duration: 1s;
+            animation-timing-function: ease-in-out;
+            animation-play-state: paused;
+        }
+        #flag>img{
+            width: 7rem;
+        }
+
+        #flagpole{
+            width: .5em;
+            height: 80vh;
+            background: black;
+            top: 5em;
+        }
+        .tiananmen{
+            width: 100%;
+            position: fixed;
+            bottom: 0px;
+            text-align: center;
+        }
+        .tiananmen img{
+            max-width: 100vw;
+        }
+        #flag_up{
+            display: block;
+            text-align: center;
+            position: fixed;
+            right: 20px;
+            bottom: 100px;
+            width: 50px;
+            height: 50px;
+            border-radius:50%;
+            border: none;
+            background: red;
+            color: white;
+            padding: 10px;
+            font-size: 17px;
+            font-weight: bolder;
+            box-shadow: 0 0 10px 6px yellow;
+            transform: rotate(0);
+            animation-name: rotateAndBig;
+            animation-iteration-count: infinite;
+            animation-duration: 20s;
+            animation-timing-function: linear;
+            z-index: 99;
+        }
+        @keyframes rotateAndBig {
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }
+        @keyframes flag_up {
+            from{
+                transform: translateY(60vh);
+            }
+            to{
+                transform: translateY(0em);
+            }
+        }
+        #shadow{
+            top:0;
+            z-index: 999;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,.8);
+        }
+        #show_at_end{
+            position: fixed;
+            z-index: 10000;
+            background: red;
+            border: yellow 5px solid;
+            box-shadow: 0 0 2px 20px red;
+            width: 70vw;
+            height: 50vh;
+            margin-left: 14vw;
+            margin-top: 20vh;
+            text-align: center;
+            color: lightyellow;
+            font-size: 1.5em;
+            max-width: 500px;
+        }
+        #show_at_end>b{
+            font-size: 1.3em;
+        }
+        #show_at_end>p{
+            font-weight: bold;
+        }
+        #show_at_end>small:last-child{
+            display: block;
+            position: absolute;
+            bottom: 5px;
+            width: 100%;
+            font-size: .8em;
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="shadow" hidden></div>
+<div id="show_at_end" hidden>
+    <p>守护国旗</p>
+    <p>我是护旗手</p>
+    <br>
+    <b>第 {{ num }} 次</b>
+    <br>
+    <br>
+    <small>点击右上角，分享</small>
+    <br>
+    <small>陕西科技大学 易班 出品</small>
+</div>
+    <div id="container">
+        <div id="flag">
+            <img src="assets/guoqi.gif">
+        </div>
+        <div id="flagpole"></div>
+    </div>
+    <div class="tiananmen">
+        <img src="assets/tiananmen.png">
+    </div>
+    <span id="flag_up">长按升旗</span>
+
+    <script>
+        let up_btn = document.getElementById("flag_up")
+        let flag = document.getElementById("flag")
+        flag.addEventListener("animationend",function (){
+            console.log("动画结束")
+            document.getElementById("shadow").hidden = false
+            document.getElementById("show_at_end").hidden = false
+
+        })
+        up_btn.addEventListener("touchstart",function (){
+            console.log("长按开始")
+            // 长按的时候动画暂停，显示友好
+            this.style.animationPlayState="paused"
+           flag.style.animationPlayState = "running"
+        //    监听动画结束,显示更改当前的 title
+        })
+        up_btn.addEventListener("touchend",function (event){
+            console.log("长按取消")
+            this.style.animationPlayState="running"
+            flag.style.animationPlayState = "paused"
+        })
+    </script>
+</body>
+</html>

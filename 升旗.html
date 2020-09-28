@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>升旗html</title>
+    <style>
+        .container {
+            position: relative;
+            width: 20em;
+            margin: auto;
+        }
+
+        .flag {
+            width: 10em;
+            height: 6em;
+            background: red;
+            color: white;
+            text-align: center;
+            line-height: 6em;
+            transform: translate3d(0, 20em, 0);
+            transition: 8s all ease-in-out;
+        }
+
+        .flagpole {
+            width: 1em;
+            height: 25em;
+            margin: auto;
+            border: solid 1px;
+            position: absolute;
+            top: 0px;
+            padding-top: 10em;
+        }
+
+        .up {
+            transform: translate3d(0, 0, 0);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="flag">我是旗</div>
+    <div class="flagpole">我是旗杆</div>
+    <div class="footer">底座</div>
+</div>
+<button id="flag_up">升旗</button>
+<script>
+        document.querySelector("#flag_up").addEventListener('click',()=>{
+            document.querySelector(".flag").classList.add("up")
+        })
+</script>
+</body>
+</html>
