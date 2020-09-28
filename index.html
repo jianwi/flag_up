@@ -33,12 +33,17 @@
     <span id="flag_up">长按升旗</span>
 
     <script>
+        const API_URL = "http://127.0.0.1:3300/"
         let up_btn = document.getElementById("flag_up")
         let flag = document.getElementById("flag")
         flag.addEventListener("animationend",function (){
             console.log("动画结束")
             document.getElementById("shadow").hidden = false
-            document.getElementById("show_at_end").hidden = false
+            let show_at_end = document.getElementById("show_at_end")
+            show_at_end.hidden = false
+            fetch(API_URL+'/nums').then(res=>{
+                console.log(res)
+            })
 
         })
         up_btn.addEventListener("touchstart",function (){
