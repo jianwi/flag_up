@@ -70,7 +70,7 @@ flag.addEventListener("animationend", function () {
     function changeStatus(data) {
         show_at_end.innerHTML = show_at_end.innerHTML.replace("{{ num }}", data)
         show_at_end.hidden = false
-        document.title = `守护国旗，我是第 ${data} 位护旗手！`
+        document.title = `全民升国旗,我是第 ${data} 位升旗手！`
     }
 })
 
@@ -84,6 +84,7 @@ up_btn.addEventListener("touchstart", function (event) {
     //    播放国歌, 如果用户没有手动禁止音乐播放，则自动播放音乐
     bgmusic.play()
     if (!man_muted) {
+        // 用户没有手动点 静音，默认不静音
         bgmusic.muted = false
     }
 })
@@ -92,7 +93,7 @@ up_btn.addEventListener("touchend", function (event) {
     console.log("长按取消")
     // 音乐暂停
     bgmusic.pause()
-
+    // 禁用浏览器默认事件
     event.preventDefault();
     this.style.animationPlayState = "running"
     flag.style.animationPlayState = "paused"
