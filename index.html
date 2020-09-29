@@ -33,10 +33,13 @@
     <div id="tiananmen">
         <!--            <img src="assets/tiananmen.png" alt="天安门">-->
     </div>
-    <span id="flag_up">长按升旗</span>
+    <span id="flag_up">长按<br/>升旗</span>
 </div>
 <script>
-    // 先将  天安门图片缓存后，再显示
+    // 用户是否手动设置了静音？
+    let man_muted = false
+
+    // 先将  图片缓存后，再显示
     let shadow = document.getElementById("shadow")
     let container = document.getElementById('container')
     let image = new Image()
@@ -86,6 +89,8 @@
     let muted = document.getElementById('muted')
     muted.addEventListener("click",function (){
         if (bgmusic.muted){
+            // 播放音乐
+            man_muted = false
             bgmusic.muted = false
             this.hidden = true
             this.style.animationPlayState = "running"
@@ -93,6 +98,7 @@
             this.hidden = false
             if (bgmusic.paused == true) bgmusic.play()
         }else {
+            man_muted = true
             bgmusic.muted = true
             this.style.animationPlayState = "paused"
             this.style.transform = "rotate(0deg)"
@@ -146,8 +152,10 @@
         this.style.animationPlayState = "paused"
         flag.style.animationPlayState = "running"
 
-        //    播放国歌
-        bgmusic.muted = false
+        //    播放国歌, 如果用户没有手动禁止音乐播放，则自动播放音乐
+        if (!man_muted){
+            bgmusic.muted = false
+        }
         bgmusic.play()
     })
 

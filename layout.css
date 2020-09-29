@@ -111,7 +111,7 @@ body{
     height: 60px;
     border-radius: 20px;
     padding: 0;
-    background: white;
+    background: none;
     border: none;
     animation-name: rotateAndBig;
     animation-duration: 25s;
