@@ -53,13 +53,12 @@ body{
     bottom: 100px;
     width: 50px;
     height: 50px;
-    line-height: 25px;
     border-radius:50%;
     border: none;
     background: red;
     color: white;
-    padding: 10px;
-    font-size: 18px;
+    padding: 5px;
+    font-size: 15px;
     font-weight: bolder;
     box-shadow: 0 0 10px 6px yellow;
     transform: rotate(0);
