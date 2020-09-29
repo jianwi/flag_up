@@ -25,8 +25,8 @@ body{
     height: 3rem;
     top: 4.8em;
     animation-name: flag_up;
-    animation-duration: 15s;
-    animation-timing-function: ease-in-out;
+    animation-duration: 35s;
+    animation-timing-function: ease-out;
     animation-play-state: paused;
 }
 #flag>img{
