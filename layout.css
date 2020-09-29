@@ -2,7 +2,6 @@
     body {
     }
     *{
-        max-width: 500px;
         margin: auto;
     }
 
@@ -104,7 +103,7 @@ body{
 }
 #muted{
     position: fixed;
-    z-index: 99999999999;
+    z-index: 999999;
     right: 10px;
     top: 10px;
     width: 60px;

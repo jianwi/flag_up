@@ -46,16 +46,15 @@
     image.src = "./assets/tiananmen.png"
     shadow.innerHTML = "30%"
     image.onload = function () {
-        shadow.innerHTML = "50%"
+        shadow.innerHTML = "80%"
     }
     // setTimeout 队列
     let queue = []
 
     // 加载 国歌
-    let bgmusic = new Audio()
-    bgmusic.src = "./assets/bg.mp3"
+    let bgmusic = new Audio("./assets/bg.mp3")
     bgmusic.muted = true
-    bgmusic.onloadstart = function () {
+    bgmusic.addEventListener('loadstart',function () {
         shadow.innerHTML = `60%`
         queue.push(setTimeout(() => {
             shadow.innerHTML = `70%`
@@ -75,11 +74,11 @@
         )
         queue.push(
             setTimeout(() => {
-                shadow.innerHTML = `99`
+                shadow.innerHTML = `99%`
             }, 12000)
         )
-    }
-    bgmusic.oncanplay = function () {
+    })
+    bgmusic.oncanplaythrough = function () {
         shadow.hidden = true
         container.hidden = false
         queue.forEach(i => clearTimeout(i))
