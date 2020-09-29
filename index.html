@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="layout.css">
 </head>
 <body>
-<div id="shadow" hidden>正在加载中，请稍后</div>
+<div id="shadow">
+    0%
+</div>
 <div id="show_at_end" hidden>
     <p>守护国旗</p>
     <p>我是护旗手</p>
@@ -21,69 +23,140 @@
     <br>
     <small>陕西科技大学 易班 出品</small>
 </div>
-    <div id="container">
-        <div id="flag">
-            <img src="assets/guoqi.gif" alt="国旗图片">
-        </div>
-        <div id="flagpole"></div>
+<div id="container" hidden>
+    <button id="muted">
+        <svg t="1601354463214" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4155" width="32" height="32"><path d="M169.5744 837.2224c7.3728 8.6016 20.0704 9.8304 28.672 2.4576L889.2416 261.3248c8.6016-7.3728 9.8304-20.0704 2.4576-28.672a20.23424 20.23424 0 0 0-28.672-2.4576L172.032 808.5504c-8.6016 6.9632-9.8304 20.0704-2.4576 28.672zM768.4096 298.1888l37.6832-31.5392c-4.9152-5.3248-9.4208-9.8304-13.1072-13.5168a24.1664 24.1664 0 0 0-34.4064 2.048c-9.0112 10.24-8.192 25.3952 2.048 34.4064 1.2288 1.6384 4.096 4.9152 7.7824 8.6016zM840.0896 313.344l-37.6832 31.5392c0.4096 0.8192 1.2288 1.6384 1.6384 2.4576 28.2624 48.3328 45.4656 104.448 45.4656 168.7552s-17.2032 120.4224-45.4656 168.7552c-9.8304 16.7936-20.48 31.5392-31.1296 43.4176-6.144 6.9632-10.6496 11.8784-13.1072 13.9264a24.1664 24.1664 0 0 0-2.048 34.4064c9.0112 10.24 24.576 11.0592 34.4064 2.048 13.9264-12.288 33.9968-35.6352 53.6576-68.8128 32.768-55.296 52.0192-120.0128 52.0192-193.3312 0-73.3184-19.6608-138.0352-52.0192-193.3312-1.6384-4.096-3.6864-6.9632-5.7344-9.8304zM661.9136 387.4816l37.2736-31.5392c-0.8192-0.8192-2.048-2.4576-2.8672-3.2768a24.49408 24.49408 0 0 0-34.4064-1.2288c-9.8304 9.4208-10.24 24.576-1.2288 34.4064 0.4096 0.4096 0.8192 1.2288 1.2288 1.6384zM690.176 439.0912c8.192 22.9376 13.1072 48.3328 13.1072 77.0048 0 37.2736-8.192 70.0416-22.1184 97.8944-8.192 16.384-15.9744 27.0336-20.48 31.9488-9.4208 9.8304-8.6016 25.3952 1.2288 34.4064 9.8304 9.4208 25.3952 8.6016 34.4064-1.2288 7.7824-8.192 18.0224-22.9376 28.672-43.8272 16.7936-34.4064 27.0336-74.1376 27.0336-119.6032 0-40.96-8.6016-77.4144-22.9376-109.7728l-38.912 33.1776z" p-id="4156" fill="#2c2c2c"></path><path d="M239.2064 711.4752h35.6352l305.9712-256V223.232c0-27.0336-22.1184-39.7312-49.152-27.8528L336.6912 320.7168H239.2064c-54.0672 0-97.8944 43.4176-97.8944 97.4848v195.3792c0 54.0672 43.4176 97.8944 97.8944 97.8944zM352.6656 721.3056l179.4048 115.0976c27.4432 11.8784 49.152-0.8192 49.152-27.8528v-278.1184l-228.5568 190.8736z" p-id="4157" fill="#2c2c2c"></path></svg>    </button>
+    <div id="flag">
+        <img src="assets/guoqi.gif" alt="国旗图片">
     </div>
-    <div class="tiananmen">
-        <img src="assets/tiananmen.png" alt="天安门">
+    <div id="flagpole"></div>
+    <div id="tiananmen">
+        <!--            <img src="assets/tiananmen.png" alt="天安门">-->
     </div>
     <span id="flag_up">长按升旗</span>
+</div>
+<script>
+    // 先将  天安门图片缓存后，再显示
+    let shadow = document.getElementById("shadow")
+    let container = document.getElementById('container')
+    let image = new Image()
+    image.src = "./assets/tiananmen.png"
+    shadow.innerHTML = "30%"
+    image.onload = function () {
+        shadow.innerHTML = "50%"
+    }
+    // setTimeout 队列
+    let queue = []
 
-    <script>
-        const API_URL = ""
-        let up_btn = document.getElementById("flag_up")
-        let flag = document.getElementById("flag")
+    // 加载 国歌
+    let bgmusic = new Audio()
+    bgmusic.src = "./assets/bg.mp3"
+    bgmusic.muted = true
+    bgmusic.onloadstart = function () {
+        shadow.innerHTML = `60%`
+        queue.push(setTimeout(() => {
+            shadow.innerHTML = `70%`
+        }, 1000))
+        queue.push(
+            setTimeout(() => {
+                shadow.innerHTML = `79%`
+            }, 2000))
+        queue.push(
+            setTimeout(() => {
+                shadow.innerHTML = `87%`
+            }, 5000))
+        queue.push(
+            setTimeout(() => {
+                shadow.innerHTML = `95%`
+            }, 6000)
+        )
+        queue.push(
+            setTimeout(() => {
+                shadow.innerHTML = `99`
+            }, 12000)
+        )
+    }
+    bgmusic.oncanplay = function () {
+        shadow.hidden = true
+        container.hidden = false
+        queue.forEach(i => clearTimeout(i))
+    }
 
-        // 动画结束
-        flag.addEventListener("animationend",function (){
-            console.log("动画结束")
-            document.getElementById("shadow").hidden = false
-            let show_at_end = document.getElementById("show_at_end")
-            // 从会话储存中读取数据
-            let data = sessionStorage.getItem("nums")
-            if (!data){
-                fetch(API_URL+'/api/add').then(res=>{
-                    if (res.status == "200"){
-                        return res.text()
-                    }else {
-                        throw "服务器出错"
-                    }
-                }).then(data=>{
-                    console.log(data)
-                    changeStatus(data)
-                    sessionStorage.setItem("nums",data)
-                }).catch(err=>{
-                    // 显示 500 说明服务器可能有问题了
-                    changeStatus("500")
-                })
-            }else {
+//   控制静音
+    let muted = document.getElementById('muted')
+    muted.addEventListener("click",function (){
+        if (bgmusic.muted){
+            bgmusic.muted = false
+            this.hidden = true
+            this.style.animationPlayState = "running"
+            this.innerHTML =  `<svg t="1601357174815" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2383" data-spm-anchor-id="a313x.7781069.0.i0" width="32" height="32"><path d="M983.402278 32.384289L774.001285 1.358051a122.015645 122.015645 0 0 0-138.573418 102.114976l-77.670061 503.105603c-72.290091-71.715531-216.034549-102.062744-344.735982-52.232724-160.354464 62.209175-235.04726 218.646185-192.790986 337.841262 42.204041 120.866525 213.893007 166.204529 374.247471 103.995354 123.634859-48.733132 200.678128-144.475716 214.519799-246.381761l94.018905-615.19703a71.558833 71.558833 0 0 1 82.005377-59.858702L973.47806 104.465449a36.562907 36.562907 0 0 0 41.78618-31.339635 37.503096 37.503096 0 0 0-31.861962-40.741525z" fill="#2c2c2c" p-id="2384"></path></svg>`
+            this.hidden = false
+            if (bgmusic.paused == true) bgmusic.play()
+        }else {
+            bgmusic.muted = true
+            this.style.animationPlayState = "paused"
+            this.style.transform = "rotate(0deg)"
+            this.innerHTML = `<svg t="1601354463214" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4155" width="32" height="32"><path d="M169.5744 837.2224c7.3728 8.6016 20.0704 9.8304 28.672 2.4576L889.2416 261.3248c8.6016-7.3728 9.8304-20.0704 2.4576-28.672a20.23424 20.23424 0 0 0-28.672-2.4576L172.032 808.5504c-8.6016 6.9632-9.8304 20.0704-2.4576 28.672zM768.4096 298.1888l37.6832-31.5392c-4.9152-5.3248-9.4208-9.8304-13.1072-13.5168a24.1664 24.1664 0 0 0-34.4064 2.048c-9.0112 10.24-8.192 25.3952 2.048 34.4064 1.2288 1.6384 4.096 4.9152 7.7824 8.6016zM840.0896 313.344l-37.6832 31.5392c0.4096 0.8192 1.2288 1.6384 1.6384 2.4576 28.2624 48.3328 45.4656 104.448 45.4656 168.7552s-17.2032 120.4224-45.4656 168.7552c-9.8304 16.7936-20.48 31.5392-31.1296 43.4176-6.144 6.9632-10.6496 11.8784-13.1072 13.9264a24.1664 24.1664 0 0 0-2.048 34.4064c9.0112 10.24 24.576 11.0592 34.4064 2.048 13.9264-12.288 33.9968-35.6352 53.6576-68.8128 32.768-55.296 52.0192-120.0128 52.0192-193.3312 0-73.3184-19.6608-138.0352-52.0192-193.3312-1.6384-4.096-3.6864-6.9632-5.7344-9.8304zM661.9136 387.4816l37.2736-31.5392c-0.8192-0.8192-2.048-2.4576-2.8672-3.2768a24.49408 24.49408 0 0 0-34.4064-1.2288c-9.8304 9.4208-10.24 24.576-1.2288 34.4064 0.4096 0.4096 0.8192 1.2288 1.2288 1.6384zM690.176 439.0912c8.192 22.9376 13.1072 48.3328 13.1072 77.0048 0 37.2736-8.192 70.0416-22.1184 97.8944-8.192 16.384-15.9744 27.0336-20.48 31.9488-9.4208 9.8304-8.6016 25.3952 1.2288 34.4064 9.8304 9.4208 25.3952 8.6016 34.4064-1.2288 7.7824-8.192 18.0224-22.9376 28.672-43.8272 16.7936-34.4064 27.0336-74.1376 27.0336-119.6032 0-40.96-8.6016-77.4144-22.9376-109.7728l-38.912 33.1776z" p-id="4156" fill="#2c2c2c"></path><path d="M239.2064 711.4752h35.6352l305.9712-256V223.232c0-27.0336-22.1184-39.7312-49.152-27.8528L336.6912 320.7168H239.2064c-54.0672 0-97.8944 43.4176-97.8944 97.4848v195.3792c0 54.0672 43.4176 97.8944 97.8944 97.8944zM352.6656 721.3056l179.4048 115.0976c27.4432 11.8784 49.152-0.8192 49.152-27.8528v-278.1184l-228.5568 190.8736z" p-id="4157" fill="#2c2c2c"></path></svg>`
+        }
+    })
+</script>
+<script>
+    const API_URL = ""
+    let up_btn = document.getElementById("flag_up")
+    let flag = document.getElementById("flag")
+
+    // 动画结束
+    flag.addEventListener("animationend", function () {
+        console.log("动画结束")
+        shadow.hidden = false
+        let show_at_end = document.getElementById("show_at_end")
+        // 从会话储存中读取数据
+        let data = sessionStorage.getItem("nums")
+        if (!data) {
+            fetch(API_URL + '/api/add').then(res => {
+                if (res.status == "200") {
+                    return res.text()
+                } else {
+                    throw "服务器出错"
+                }
+            }).then(data => {
+                console.log(data)
                 changeStatus(data)
-            }
-            // 改变状态，只在当前函数作用域生效
-            function changeStatus(data){
-                show_at_end.innerHTML = show_at_end.innerHTML.replace("{{ num }}",data)
-                show_at_end.hidden = false
-                document.title = `守护国旗，我是第 ${data} 位护旗手！`
-            }
-        })
+                sessionStorage.setItem("nums", data)
+            }).catch(err => {
+                // 显示 500 说明服务器可能有问题了
+                changeStatus("500")
+            })
+        } else {
+            changeStatus(data)
+        }
 
-        up_btn.addEventListener("touchstart",function (event){
-            console.log("长按开始")
-            event.preventDefault();
-            // 长按的时候动画暂停，显示友好
-            this.style.animationPlayState="paused"
-           flag.style.animationPlayState = "running"
-        })
+        // 改变状态，只在当前函数作用域生效
+        function changeStatus(data) {
+            show_at_end.innerHTML = show_at_end.innerHTML.replace("{{ num }}", data)
+            show_at_end.hidden = false
+            document.title = `守护国旗，我是第 ${data} 位护旗手！`
+        }
+    })
 
-        up_btn.addEventListener("touchend",function (event){
-            console.log("长按取消")
-            event.preventDefault();
-            this.style.animationPlayState="running"
-            flag.style.animationPlayState = "paused"
-        })
-    </script>
+    up_btn.addEventListener("touchstart", function (event) {
+        console.log("长按开始")
+        event.preventDefault();
+        // 长按的时候动画暂停，显示友好
+        this.style.animationPlayState = "paused"
+        flag.style.animationPlayState = "running"
+
+        //    播放国歌
+        bgmusic.muted = false
+        bgmusic.play()
+    })
+
+    up_btn.addEventListener("touchend", function (event) {
+        console.log("长按取消")
+        event.preventDefault();
+        this.style.animationPlayState = "running"
+        flag.style.animationPlayState = "paused"
+    })
+</script>
 </body>
 </html>
