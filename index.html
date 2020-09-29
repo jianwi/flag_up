@@ -30,7 +30,7 @@
     <div class="tiananmen">
         <img src="assets/tiananmen.png" alt="天安门">
     </div>
-    <button id="flag_up">长按升旗</button>
+    <span id="flag_up">长按升旗</span>
 
     <script>
         const API_URL = ""
@@ -70,15 +70,17 @@
             }
         })
 
-        up_btn.addEventListener("touchstart",function (){
+        up_btn.addEventListener("touchstart",function (event){
             console.log("长按开始")
+            event.preventDefault();
             // 长按的时候动画暂停，显示友好
             this.style.animationPlayState="paused"
            flag.style.animationPlayState = "running"
         })
 
-        up_btn.addEventListener("touchend",function (){
+        up_btn.addEventListener("touchend",function (event){
             console.log("长按取消")
+            event.preventDefault();
             this.style.animationPlayState="running"
             flag.style.animationPlayState = "paused"
         })

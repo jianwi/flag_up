@@ -48,6 +48,7 @@ body{
 #flag_up{
     display: block;
     text-align: center;
+    line-height: 25px;
     position: fixed;
     right: 20px;
     bottom: 100px;
@@ -57,8 +58,8 @@ body{
     border: none;
     background: red;
     color: white;
-    padding: 5px;
-    font-size: 15px;
+    padding: 10px;
+    font-size: 17px;
     font-weight: bolder;
     box-shadow: 0 0 10px 6px yellow;
     transform: rotate(0);
@@ -88,10 +89,6 @@ body{
     top:0;
     z-index: 999;
     position: fixed;
-    color: white;
-    line-height: 100vh;
-    text-align: center;
-    font-size: 1.8em;
     width: 100vw;
     height: 100vh;
     background: rgba(0,0,0,.8);
