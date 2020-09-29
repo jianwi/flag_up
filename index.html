@@ -43,46 +43,21 @@
     let shadow = document.getElementById("shadow")
     let container = document.getElementById('container')
     let image = new Image()
-    image.src = "./assets/tiananmen.png"
-    shadow.innerHTML = "30%"
-    image.onload = function () {
+    image.src = "https://pan.jianwi.cn/tiananmen.png"
+    shadow.innerHTML = "50%"
+    image.addEventListener('load',function () {
         shadow.innerHTML = "80%"
-    }
+        shadow.hidden = true
+        container.hidden = false
+
+    })
     // setTimeout 队列
     let queue = []
 
     // 加载 国歌
-    let bgmusic = new Audio("./assets/bg.mp3")
+    let bgmusic = new Audio("https://pan.jianwi.cn/bg.mp3")
     bgmusic.muted = true
-    bgmusic.addEventListener('loadstart',function () {
-        shadow.innerHTML = `60%`
-        queue.push(setTimeout(() => {
-            shadow.innerHTML = `70%`
-        }, 1000))
-        queue.push(
-            setTimeout(() => {
-                shadow.innerHTML = `79%`
-            }, 2000))
-        queue.push(
-            setTimeout(() => {
-                shadow.innerHTML = `87%`
-            }, 5000))
-        queue.push(
-            setTimeout(() => {
-                shadow.innerHTML = `95%`
-            }, 6000)
-        )
-        queue.push(
-            setTimeout(() => {
-                shadow.innerHTML = `99%`
-            }, 12000)
-        )
-    })
-    bgmusic.oncanplaythrough = function () {
-        shadow.hidden = true
-        container.hidden = false
-        queue.forEach(i => clearTimeout(i))
-    }
+
 
 //   控制静音
     let muted = document.getElementById('muted')
