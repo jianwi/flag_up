@@ -22,7 +22,7 @@ body{
     height: 3rem;
     top: 4.8em;
     animation-name: flag_up;
-    animation-duration: 1s;
+    animation-duration: 15s;
     animation-timing-function: ease-in-out;
     animation-play-state: paused;
 }
