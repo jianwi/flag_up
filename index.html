@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="layout.css">
 </head>
 <body>
-<div id="shadow" hidden></div>
+<div id="shadow" hidden>正在加载中，请稍后</div>
 <div id="show_at_end" hidden>
     <p>守护国旗</p>
     <p>我是护旗手</p>
@@ -40,12 +40,13 @@
         // 动画结束
         flag.addEventListener("animationend",function (){
             console.log("动画结束")
+            document.getElementById("shadow").hidden = false
             let show_at_end = document.getElementById("show_at_end")
             // 从会话储存中读取数据
             let data = sessionStorage.getItem("nums")
-            if (data){
+            if (!data){
                 fetch(API_URL+'/api/add').then(res=>{
-                    if (res.status === "200"){
+                    if (res.status == "200"){
                         return res.text()
                     }else {
                         throw "服务器出错"
@@ -56,7 +57,7 @@
                     sessionStorage.setItem("nums",data)
                 }).catch(err=>{
                     // 显示 500 说明服务器可能有问题了
-                    changeStatus(500)
+                    changeStatus("500")
                 })
             }else {
                 changeStatus(data)
@@ -64,7 +65,6 @@
             // 改变状态，只在当前函数作用域生效
             function changeStatus(data){
                 show_at_end.innerHTML = show_at_end.innerHTML.replace("{{ num }}",data)
-                document.getElementById("shadow").hidden = false
                 show_at_end.hidden = false
                 document.title = `守护国旗，我是第 ${data} 位护旗手！`
             }

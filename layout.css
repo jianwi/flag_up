@@ -89,6 +89,10 @@ body{
     top:0;
     z-index: 999;
     position: fixed;
+    color: white;
+    line-height: 100vh;
+    text-align: center;
+    font-size: 1.8em;
     width: 100vw;
     height: 100vh;
     background: rgba(0,0,0,.8);
