@@ -113,12 +113,6 @@ body{
     padding: 0;
     background: none;
     border: none;
-    animation-name: rotateAndBig;
-    animation-duration: 25s;
-    animation-fill-mode: forwards;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-play-state: paused;
 }
 #muted:focus{
     outline: none;
