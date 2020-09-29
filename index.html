@@ -33,25 +33,48 @@
     <span id="flag_up">长按升旗</span>
 
     <script>
-        const API_URL = "http://127.0.0.1:3300/"
+        const API_URL = ""
         let up_btn = document.getElementById("flag_up")
         let flag = document.getElementById("flag")
+
+        // 动画结束
         flag.addEventListener("animationend",function (){
             console.log("动画结束")
-            document.getElementById("shadow").hidden = false
             let show_at_end = document.getElementById("show_at_end")
-            show_at_end.hidden = false
-            fetch(API_URL+'/nums').then(res=>{
-                console.log(res)
-            })
-
+            // 从会话储存中读取数据
+            let data = sessionStorage.getItem("nums")
+            if (data){
+                fetch(API_URL+'/api/add').then(res=>{
+                    if (res.status === "200"){
+                        return res.text()
+                    }else {
+                        throw "服务器出错"
+                    }
+                }).then(data=>{
+                    console.log(data)
+                    changeStatus(data)
+                    sessionStorage.setItem("nums",data)
+                }).catch(err=>{
+                    // 显示 500 说明服务器可能有问题了
+                    changeStatus(500)
+                })
+            }else {
+                changeStatus(data)
+            }
+            // 改变状态，只在当前函数作用域生效
+            function changeStatus(data){
+                show_at_end.innerHTML = show_at_end.innerHTML.replace("{{ num }}",data)
+                document.getElementById("shadow").hidden = false
+                show_at_end.hidden = false
+                document.title = `守护国旗，我是第 ${data} 位护旗手！`
+            }
         })
+
         up_btn.addEventListener("touchstart",function (){
             console.log("长按开始")
             // 长按的时候动画暂停，显示友好
             this.style.animationPlayState="paused"
            flag.style.animationPlayState = "running"
-        //    监听动画结束,显示更改当前的 title
         })
         up_btn.addEventListener("touchend",function (){
             console.log("长按取消")

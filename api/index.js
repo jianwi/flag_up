@@ -9,18 +9,25 @@ const server = http.createServer((req,res)=>{
     res.setHeader("Server",'Nginx pro 2021')
     if (/num/.test(req.url)){
         client.get('num',function (erro,data){
-            res.end(data)
+            res.end(data?data:"0")
         })
     }else if (/add/.test(req.url)){
         client.incr('num',function (err,data){
             console.log(data)
-            res.end("ok")
+            res.end(data+"")
         })
     }else {
         res.statusCode = 404
         res.end("404 undefined")
     }
 })
+
 server.listen("3300",()=>{
     console.log('服务器运行')
+})
+
+process.on('SIGTERM', () => {
+    server.close(() => {
+        console.log('服务器已终止运行')
+    })
 })
