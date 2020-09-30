@@ -13,8 +13,12 @@ body{
 }
 #container{
     position: relative;
-    width: 1em;
+    width: 100vw;
+    max-width: 900px;
+    height: 100vh;
     margin: auto;
+    background: url("./assets/bg.webp");
+    background-size: cover;
 }
 #flagpole,#flag{
     position: absolute;
@@ -23,8 +27,9 @@ body{
     width: 7rem;
     height: 3rem;
     top: 4.8em;
+    left: 50%;
     animation-name: flag_up;
-    animation-duration: 51s;
+    animation-duration: 53s;
     animation-timing-function: ease-out;
     animation-play-state: paused;
 }
@@ -35,8 +40,21 @@ body{
 #flagpole{
     width: .5em;
     height: 80vh;
-    background: black;
+    left: 50%;
+    background: #e3e3e3;
+    border: solid 1px;
     top: 5em;
+    transform: translateX(-2px);
+}
+#flagpole::before{
+    content: "";
+    position: absolute;
+    background: gold;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    top: -1em;
+    left: -.3em;
 }
 #tiananmen{
     width: 100%;
