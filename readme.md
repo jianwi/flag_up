@@ -1,7 +1,7 @@
-### h5升国旗
+### h5实现升国旗
 #### 前端实现原理：
 使用 css3的动画，事件实现国旗上升，暂停  
-使用 transform 控制元素位值变化，单独开启新图层，避免不必要的重排
+使用 transform 控制元素位值变化，开启新图层，避免不必要的重排
 
 #### 人数统计功能
 1. 后台使用 nodejs  
@@ -30,3 +30,25 @@ js/config.js
 API_URL // 后台api的url，如果你使用了反向代理，保持默认即可。否则，配置下 CORS 跨域
 ASSET_URL // 静态资源地址
 ```
+### 部署
+#### 1. 复制项目
+```shell script
+git clone https://github.com/jianwi/flag_up.git
+```
+#### 2. 后端部署
+如果没有 pm2 ，先全局安装pm2
+```shell script
+cnpm install pm2 -g
+```
+安装依赖
+```shell script
+cd api
+cnpm install
+``` 
+运行 api 服务器
+```shell script
+pm2 start index.js
+```
+默认是 3300 端口,此时用浏览器打开“127.0.0.1:3300”如果显示404则成功  
+此时可以选择使用反向代理，或者将 config.js 中的 API_URL 改为 “127.0.0.1:3300“，此时需要后端实现跨域资源共享  
+推荐使用反向代理
