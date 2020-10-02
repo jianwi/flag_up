@@ -21,7 +21,10 @@ image.addEventListener('load', function () {
 // 加载 国歌
 let bgmusic = new Audio(ASSET_URL + "/bg.mp3")
 bgmusic.muted = true
+
 // 由于 ios 系统端 微信对 audio 的事件支持不好，所以不做预加载进度的判断
+bgmusic.play()
+bgmusic.pause()
 
 //   控制静音
 let muted = document.getElementById('muted')

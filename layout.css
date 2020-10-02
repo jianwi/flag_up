@@ -17,7 +17,7 @@ body{
     max-width: 900px;
     height: 100vh;
     margin: auto;
-    background: url("./assets/bg.webp");
+    background: url("./assets/bg.png");
     background-size: cover;
 }
 #flagpole,#flag{
