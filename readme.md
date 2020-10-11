@@ -52,3 +52,15 @@ pm2 start index.js
 默认是 3300 端口,此时用浏览器打开“127.0.0.1:3300”如果显示404则成功  
 此时可以选择使用反向代理，或者将 config.js 中的 API_URL 改为 “127.0.0.1:3300“，此时需要后端实现跨域资源共享  
 推荐使用反向代理
+
+
+### 遇到的问题 & 解决思路
+1. 部分 ios 设备在 audio.play() 调用后才开始加载  
+在 audio 创建完后立即调用 audio.play() 和 audio.pause()
+
+2. pc 端用鼠标点击不能触发事件  
+pc 端不支持 touch 事件。  
+怎么检测设备是否支持 touch 事件？  
+如果不支持，document.ontouchstart 就是 undefined，因为没有这个属性。
+然而支持的话，document.ontouchstart 就是 null ，表示是个空指针引用
+
