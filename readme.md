@@ -1,4 +1,7 @@
 ### h5实现升国旗
+#### 演示
+[上线版本](https://q.jialidun.vip)  
+[github-page版,比较慢，无后台统计人数功能](https://jianwi.github.io/flag_up)
 #### 前端实现原理：
 使用 css3的动画，事件实现国旗上升，暂停  
 使用 transform 控制元素位值变化，开启新图层，避免不必要的重排
@@ -63,4 +66,3 @@ pc 端不支持 touch 事件。
 怎么检测设备是否支持 touch 事件？  
 如果不支持，document.ontouchstart 就是 undefined，因为没有这个属性。
 然而支持的话，document.ontouchstart 就是 null ，表示是个空指针引用
-
