@@ -80,8 +80,8 @@ flag.addEventListener("animationend", function () {
         document.title = `全民升国旗,我是第 ${data} 位升旗手！`
     }
 })
-if (up_btn.ontouchstart === null){
 
+if (up_btn.ontouchstart === null){
 // 长按升旗
     up_btn.addEventListener("touchstart", flagUp)
     up_btn.addEventListener("touchend",flagStop)

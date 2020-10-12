@@ -4,8 +4,8 @@
     *{
         margin: auto;
     }
-
 }
+
 body{
     border: 0;
     margin: 0;
@@ -14,7 +14,7 @@ body{
 #container{
     position: relative;
     width: 100vw;
-    max-width: 900px;
+    max-width: 390px;
     height: 100vh;
     margin: auto;
     background: url("./assets/bg.png");
@@ -26,7 +26,7 @@ body{
 #flag{
     width: 7rem;
     height: 3rem;
-    top: 4.8em;
+    bottom: 510px;
     left: 50%;
     animation-name: flag_up;
     animation-duration: 53s;
@@ -39,11 +39,11 @@ body{
 
 #flagpole{
     width: .5em;
-    height: 80vh;
+    height: 550px;
     left: 50%;
     background: #e3e3e3;
     border: solid 1px;
-    top: 5em;
+    bottom: 0em;
     transform: translateX(-2px);
 }
 #flagpole::before{
@@ -59,7 +59,7 @@ body{
 #tiananmen{
     width: 100%;
     height: 300px;
-    position: fixed;
+    position: absolute;
     left: 0;
     bottom: 0;
     text-align: center;
@@ -71,7 +71,7 @@ body{
     display: block;
     text-align: center;
     line-height: 25px;
-    position: fixed;
+    position: absolute;
     right: 20px;
     bottom: 100px;
     width: 50px;
@@ -101,10 +101,10 @@ body{
 }
 @keyframes flag_up {
     from{
-        transform: translateY(60vh);
+        transform: translateY(400px);
     }
     to{
-        transform: translateY(0em);
+        transform: translateY(0px);
     }
 }
 #shadow{
@@ -120,8 +120,8 @@ body{
     background: rgba(0,0,0,.8);
 }
 #muted{
-    position: fixed;
-    z-index: 999999;
+    position: absolute;
+    z-index: 999;
     right: 10px;
     top: 10px;
     width: 60px;
@@ -135,19 +135,19 @@ body{
     outline: none;
 }
 #show_at_end{
-    position: fixed;
-    z-index: 10000;
+    position: absolute;
+    z-index: 99999;
     background: red;
     border: yellow 5px solid;
     box-shadow: 0 0 2px 20px red;
-    width: 70vw;
-    height: 50vh;
-    margin-left: 14vw;
-    margin-top: 20vh;
+    padding: 20px 5px 5px 5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     text-align: center;
     color: lightyellow;
     font-size: 1.5em;
-    max-width: 500px;
+    width: 220px;
 }
 #show_at_end>b{
     font-size: 1.3em;
@@ -156,10 +156,6 @@ body{
     font-weight: bold;
 }
 #show_at_end>small:last-child{
-    display: block;
-    position: absolute;
-    bottom: 5px;
-    width: 100%;
     font-size: .8em;
     text-align: center;
 }
