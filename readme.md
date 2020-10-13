@@ -60,9 +60,12 @@ pm2 start index.js
 ### 遇到的问题 & 解决思路
 1. 部分 ios 设备在 audio.play() 调用后才开始加载  
 在 audio 创建完后立即调用 audio.play() 和 audio.pause()
+ 
+使用预加载
 
 2. pc 端用鼠标点击不能触发事件  
 pc 端不支持 touch 事件。  
 怎么检测设备是否支持 touch 事件？  
 如果不支持，document.ontouchstart 就是 undefined，因为没有这个属性。
 然而支持的话，document.ontouchstart 就是 null ，表示是个空指针引用
+
